@@ -51,6 +51,7 @@ class Record(models.Model):
     name=models.CharField(max_length=255)
     price=models.IntegerField()
     genre=models.CharField(max_length=255)
+    artist=models.CharField(max_lenght=255)
     description=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
