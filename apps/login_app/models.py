@@ -47,23 +47,25 @@ class User(models.Model):
     updated_at=models.DateTimeField(auto_now=True)
     objects=UserManager()
 
-class Product(models.Model):
+class Record(models.Model):
     name=models.CharField(max_length=255)
     price=models.IntegerField()
+    genre=models.CharField(max_length=255)
+    artist=models.CharField(max_length=255)
     description=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
 class Cart(models.Model):
     owner=models.OneToOneField(User,related_name='shopping_cart')
-    items=models.ManyToManyField(Product,related_name='carts')
+    items=models.ManyToManyField(Record,related_name='carts')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
 class Order(models.Model):
     status=models.BooleanField(default=False)
     user=models.ForeignKey(User, related_name='user_orders')
-    prods=models.ManyToManyField(Product, related_name='orders')
+    recs=models.ManyToManyField(Record, related_name='orders')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     
