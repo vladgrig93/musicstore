@@ -49,6 +49,7 @@ class User(models.Model):
 
 class Record(models.Model):
     name=models.CharField(max_length=255)
+    rec_image=models.TextField()
     price=models.IntegerField()
     genre=models.CharField(max_length=255)
     artist=models.CharField(max_length=255)
@@ -66,6 +67,14 @@ class Order(models.Model):
     status=models.BooleanField(default=False)
     user=models.ForeignKey(User, related_name='user_orders')
     recs=models.ManyToManyField(Record, related_name='orders')
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+
+class Artist(models.Model):
+    name=models.CharField(max_length=255)
+    bio=models.TextField()
+    art_image=models.TextField()
+    record=models.ForeignKey(Record, related_name='artists')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     
